@@ -20,7 +20,14 @@ const row = (bill) => {
   }
 
 const rows = (data) => {
-  return (data && data.length) ? data.map(bill => row(bill)).join("") : ""
+  if (!data) return "";
+  const dataDate = [...data];
+  dataDate.sort((a, b) => {
+    const aDate = new Date(a.date).getTime();
+    const bDate = new Date(b.date).getTime();
+    return bDate - aDate;
+  });
+  return dataDate.map((bill) => row(bill)).join("");
 }
 
 export default ({ data: bills, loading, error }) => {
