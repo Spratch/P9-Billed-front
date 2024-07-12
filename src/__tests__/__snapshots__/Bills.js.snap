@@ -1,0 +1,371 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Given I am connected as an employee When I am on Bills Page Then bills should be fetched 1`] = `
+<tbody
+  data-testid="tbody"
+>
+  
+            
+    
+  <tr>
+    
+      
+    <td>
+      Hôtel et logement
+    </td>
+    
+      
+    <td>
+      encore
+    </td>
+    
+      
+    <td>
+      2004-04-04
+    </td>
+    
+      
+    <td>
+      400 €
+    </td>
+    
+      
+    <td>
+      pending
+    </td>
+    
+      
+    <td>
+      
+        
+      <div
+        class="icon-actions"
+      >
+        
+      
+        <div
+          data-bill-url="https://test.storage.tld/v0/b/billable-677b6.a…f-1.jpg?alt=media&token=c1640e12-a24b-4b11-ae52-529112e9602a"
+          data-testid="icon-eye"
+          id="eye"
+        >
+          
+      
+          <svg
+            height="0.166667in"
+            viewBox="0 0 22 15"
+            width="0.244444in"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            
+
+            <path
+              d="M 11.00,0.00
+      C 6.00,0.00 1.73,3.11 0.00,7.50
+        1.73,11.89 6.00,15.00 11.00,15.00
+        16.00,15.00 20.27,11.89 22.00,7.50
+        20.27,3.11 16.00,0.00 11.00,0.00 Z
+      M 11.00,12.50
+      C 8.24,12.50 6.00,10.26 6.00,7.50
+        6.00,4.74 8.24,2.50 11.00,2.50
+        13.76,2.50 16.00,4.74 16.00,7.50
+        16.00,10.26 13.76,12.50 11.00,12.50 Z
+      M 11.00,4.50
+      C 9.34,4.50 8.00,5.84 8.00,7.50
+        8.00,9.16 9.34,10.50 11.00,10.50
+        12.66,10.50 14.00,9.16 14.00,7.50
+        14.00,5.84 12.66,4.50 11.00,4.50 Z"
+              fill="#0D5AE5"
+              id="Imported Path"
+              stroke="none"
+              stroke-width="0"
+            />
+            
+
+          </svg>
+          
+      
+        </div>
+        
+    
+      </div>
+      
+      
+    </td>
+    
+    
+  </tr>
+  
+    
+    
+  <tr>
+    
+      
+    <td>
+      Services en ligne
+    </td>
+    
+      
+    <td>
+      test3
+    </td>
+    
+      
+    <td>
+      2003-03-03
+    </td>
+    
+      
+    <td>
+      300 €
+    </td>
+    
+      
+    <td>
+      accepted
+    </td>
+    
+      
+    <td>
+      
+        
+      <div
+        class="icon-actions"
+      >
+        
+      
+        <div
+          data-bill-url="https://test.storage.tld/v0/b/billable-677b6.a…dur.png?alt=media&token=571d34cb-9c8f-430a-af52-66221cae1da3"
+          data-testid="icon-eye"
+          id="eye"
+        >
+          
+      
+          <svg
+            height="0.166667in"
+            viewBox="0 0 22 15"
+            width="0.244444in"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            
+
+            <path
+              d="M 11.00,0.00
+      C 6.00,0.00 1.73,3.11 0.00,7.50
+        1.73,11.89 6.00,15.00 11.00,15.00
+        16.00,15.00 20.27,11.89 22.00,7.50
+        20.27,3.11 16.00,0.00 11.00,0.00 Z
+      M 11.00,12.50
+      C 8.24,12.50 6.00,10.26 6.00,7.50
+        6.00,4.74 8.24,2.50 11.00,2.50
+        13.76,2.50 16.00,4.74 16.00,7.50
+        16.00,10.26 13.76,12.50 11.00,12.50 Z
+      M 11.00,4.50
+      C 9.34,4.50 8.00,5.84 8.00,7.50
+        8.00,9.16 9.34,10.50 11.00,10.50
+        12.66,10.50 14.00,9.16 14.00,7.50
+        14.00,5.84 12.66,4.50 11.00,4.50 Z"
+              fill="#0D5AE5"
+              id="Imported Path"
+              stroke="none"
+              stroke-width="0"
+            />
+            
+
+          </svg>
+          
+      
+        </div>
+        
+    
+      </div>
+      
+      
+    </td>
+    
+    
+  </tr>
+  
+    
+    
+  <tr>
+    
+      
+    <td>
+      Restaurants et bars
+    </td>
+    
+      
+    <td>
+      test2
+    </td>
+    
+      
+    <td>
+      2002-02-02
+    </td>
+    
+      
+    <td>
+      200 €
+    </td>
+    
+      
+    <td>
+      refused
+    </td>
+    
+      
+    <td>
+      
+        
+      <div
+        class="icon-actions"
+      >
+        
+      
+        <div
+          data-bill-url="https://test.storage.tld/v0/b/billable-677b6.a…f-1.jpg?alt=media&token=4df6ed2c-12c8-42a2-b013-346c1346f732"
+          data-testid="icon-eye"
+          id="eye"
+        >
+          
+      
+          <svg
+            height="0.166667in"
+            viewBox="0 0 22 15"
+            width="0.244444in"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            
+
+            <path
+              d="M 11.00,0.00
+      C 6.00,0.00 1.73,3.11 0.00,7.50
+        1.73,11.89 6.00,15.00 11.00,15.00
+        16.00,15.00 20.27,11.89 22.00,7.50
+        20.27,3.11 16.00,0.00 11.00,0.00 Z
+      M 11.00,12.50
+      C 8.24,12.50 6.00,10.26 6.00,7.50
+        6.00,4.74 8.24,2.50 11.00,2.50
+        13.76,2.50 16.00,4.74 16.00,7.50
+        16.00,10.26 13.76,12.50 11.00,12.50 Z
+      M 11.00,4.50
+      C 9.34,4.50 8.00,5.84 8.00,7.50
+        8.00,9.16 9.34,10.50 11.00,10.50
+        12.66,10.50 14.00,9.16 14.00,7.50
+        14.00,5.84 12.66,4.50 11.00,4.50 Z"
+              fill="#0D5AE5"
+              id="Imported Path"
+              stroke="none"
+              stroke-width="0"
+            />
+            
+
+          </svg>
+          
+      
+        </div>
+        
+    
+      </div>
+      
+      
+    </td>
+    
+    
+  </tr>
+  
+    
+    
+  <tr>
+    
+      
+    <td>
+      Transports
+    </td>
+    
+      
+    <td>
+      test1
+    </td>
+    
+      
+    <td>
+      2001-01-01
+    </td>
+    
+      
+    <td>
+      100 €
+    </td>
+    
+      
+    <td>
+      refused
+    </td>
+    
+      
+    <td>
+      
+        
+      <div
+        class="icon-actions"
+      >
+        
+      
+        <div
+          data-bill-url="https://test.storage.tld/v0/b/billable-677b6.a…61.jpeg?alt=media&token=7685cd61-c112-42bc-9929-8a799bb82d8b"
+          data-testid="icon-eye"
+          id="eye"
+        >
+          
+      
+          <svg
+            height="0.166667in"
+            viewBox="0 0 22 15"
+            width="0.244444in"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            
+
+            <path
+              d="M 11.00,0.00
+      C 6.00,0.00 1.73,3.11 0.00,7.50
+        1.73,11.89 6.00,15.00 11.00,15.00
+        16.00,15.00 20.27,11.89 22.00,7.50
+        20.27,3.11 16.00,0.00 11.00,0.00 Z
+      M 11.00,12.50
+      C 8.24,12.50 6.00,10.26 6.00,7.50
+        6.00,4.74 8.24,2.50 11.00,2.50
+        13.76,2.50 16.00,4.74 16.00,7.50
+        16.00,10.26 13.76,12.50 11.00,12.50 Z
+      M 11.00,4.50
+      C 9.34,4.50 8.00,5.84 8.00,7.50
+        8.00,9.16 9.34,10.50 11.00,10.50
+        12.66,10.50 14.00,9.16 14.00,7.50
+        14.00,5.84 12.66,4.50 11.00,4.50 Z"
+              fill="#0D5AE5"
+              id="Imported Path"
+              stroke="none"
+              stroke-width="0"
+            />
+            
+
+          </svg>
+          
+      
+        </div>
+        
+    
+      </div>
+      
+      
+    </td>
+    
+    
+  </tr>
+  
+    
+          
+</tbody>
+`;
