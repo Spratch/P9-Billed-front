@@ -369,3 +369,18 @@ exports[`Given I am connected as an employee When I am on Bills Page Then bills 
           
 </tbody>
 `;
+
+exports[`Given I am connected as an employee When I am on Bills Page should fetch and format bills, handling invalid dates gracefully 1`] = `
+Array [
+  Object {
+    "date": "invalid-date",
+    "id": "47qAXb6fIm2zOKkLzMro",
+    "status": undefined,
+  },
+  Object {
+    "date": "invalid-date",
+    "id": "BeKy5Mo4jkmdfPGYpTxZ",
+    "status": undefined,
+  },
+]
+`;

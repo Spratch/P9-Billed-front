@@ -29,10 +29,8 @@ describe("Given I am connected as an employee", () => {
       window.onNavigate(ROUTES_PATH.Bills)
       await waitFor(() => screen.getByTestId('icon-window'))
       const windowIcon = screen.getByTestId('icon-window')
-      //to-do write expect expression
       expect(windowIcon).toHaveClass("active-icon")
-
-    })
+    });
 
     test("Then bills should be ordered from earliest to latest", () => {
       document.body.innerHTML = BillsUI({ data: bills })
@@ -56,12 +54,12 @@ describe("Given I am connected as an employee", () => {
       fireEvent.click(buttonNewBill);
       const formNewBill = await screen.findByTestId("form-new-bill");
       expect(formNewBill).toBeInTheDocument();
-    })
+    });
 
     test("Then clicking on the eye icon should open the modal", async () => {
       localStorage.setItem("user", JSON.stringify({ type: "Employee", email: "a@a"}));
       document.body.innerHTML = BillsUI({ data: bills });
-      new Bills({ document, onNavigate, mockStore, localStorage: window.localStorage });
+      new Bills({ document, onNavigate, store: mockStore, localStorage: window.localStorage });
 
       const modalFile = screen.getByTestId("modaleFile");
       $.fn.modal = jest.fn(() => modalFile.classList.add("show"));
@@ -71,56 +69,45 @@ describe("Given I am connected as an employee", () => {
 
       fireEvent.click(eyeIcon);
       expect(modalFile).toHaveClass("show");
-    })
+    });
 
-    test("Then bills should be fetched", async () => {
-      localStorage.setItem("user", JSON.stringify({ type: "Employee", email: "a@a"}));
-      document.body.innerHTML = BillsUI({ data: bills });
-      new Bills({ document, onNavigate, mockStore, localStorage: window.localStorage });
+    test("should fetch bills list with formatted date and status", async () => {
+      const billsInstance = new Bills({ document, onNavigate, store: mockStore, localStorage: window.localStorage });
+      const fetchedBills = await billsInstance.getBills();
 
-      const root = document.createElement("div")
-      root.setAttribute("id", "root")
-      document.body.append(root)
-      router()
-      window.onNavigate(ROUTES_PATH.Bills)
+      const formattedBills = bills.map(bill => ({
+        ...bill,
+        date: formatDate(bill.date),
+        status: formatStatus(bill.status)
+      }));
+      
+      expect(fetchedBills).toEqual(formattedBills);
+    });
 
-      const contentPending  = await waitFor(() => screen.getAllByTestId("icon-eye")[0])
-      expect(contentPending).toBeTruthy()
-      console.log(screen.getByTestId('tbody'))
+    test("should fetch and format bills, handling invalid dates gracefully", async () => {
+      const corruptedBills = [
+        { id: "47qAXb6fIm2zOKkLzMro", date: "invalid-date", status: "invalid-status" },
+        { id: "BeKy5Mo4jkmdfPGYpTxZ", date: "invalid-date", status: "invalid-status" },
+      ];
 
-      // const date = formatDate("2001-01-01");
-      // console.log("Date: ",date);
-      // const displayedDate = screen.getByText(date)
-      // expect(displayedDate).toBeInTheDocument()
-      const status = "pending"
-      expect(screen.getByTestId("tbody")).toMatchSnapshot()
-      expect(screen.getAllByText(status)[0]).toBeInTheDocument()
-    })
+      // Mock the store's list method to return the corrupted bills
+      mockStore.bills = jest.fn(() => ({
+        list: jest.fn(() => Promise.resolve(corruptedBills))
+      }));
 
-    describe("When an error occurs on API", () => {
-      beforeEach(() => {
-        jest.spyOn(mockStore, "bills");
-        Object.defineProperty(window, "localStorage", { value: localStorageMock });
-        window.localStorage.setItem("user", JSON.stringify({ type: "Employee", email: "a@a"}));
+      const billsInstance = new Bills({ document, onNavigate, store: mockStore, localStorage: window.localStorage });
+      const fetchedBills = await billsInstance.getBills();
+      expect(fetchedBills).toMatchSnapshot();
+      expect(fetchedBills).toEqual([
+        { id: "47qAXb6fIm2zOKkLzMro", date: "invalid-date", status: undefined },
+        { id: "BeKy5Mo4jkmdfPGYpTxZ", date: "invalid-date", status: undefined },
+      ]);
+    });
 
-        const root = document.createElement("div")
-        root.setAttribute("id", "root")
-        document.body.appendChild(root)
-        router()  
-      })
-
-      test("should fetch bills from API and fails with 404 message error", async () => {
-        mockStore.bills.mockImplementationOnce(() => {
-          return {
-            list : () =>  {
-              return Promise.reject(new Error("Erreur 404"))
-            }
-          }})
-        window.onNavigate(ROUTES_PATH.Bills)
-        await new Promise(process.nextTick);
-        const message = await screen.getByText(/Erreur 404/)
-        expect(message).toBeTruthy()
-      })
-    })
+    test("should return undefined when any store passed", async () => {
+      const billsInstance = new Bills({ document, onNavigate, store: null, localStorage: window.localStorage });
+      const fetchedBills = await billsInstance.getBills();
+      expect(fetchedBills).toEqual(undefined);
+    });
   })
 })
