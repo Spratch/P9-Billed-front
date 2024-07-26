@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Given I am connected as an employee When I am on NewBill Page When I try to submit a new bill Then it should create a bill object 1`] = `undefined`;

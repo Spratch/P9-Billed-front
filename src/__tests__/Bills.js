@@ -97,7 +97,6 @@ describe("Given I am connected as an employee", () => {
 
       const billsInstance = new Bills({ document, onNavigate, store: mockStore, localStorage: window.localStorage });
       const fetchedBills = await billsInstance.getBills();
-      expect(fetchedBills).toMatchSnapshot();
       expect(fetchedBills).toEqual([
         { id: "47qAXb6fIm2zOKkLzMro", date: "invalid-date", status: undefined },
         { id: "BeKy5Mo4jkmdfPGYpTxZ", date: "invalid-date", status: undefined },

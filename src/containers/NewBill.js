@@ -24,6 +24,7 @@ export default class NewBill {
     const fileExtension = fileNames[fileNames.length - 1]
     const allowedFiles = ['jpg', 'png', 'jpeg']
     const submitButton = this.document.querySelector(`#btn-send-bill`)
+    submitButton.setAttribute("data-testid", "submit-button")
 
     if (allowedFiles.includes(fileExtension)) {
       const errorMessage = this.document.querySelector(`div[data-testid="file-error"]`)
