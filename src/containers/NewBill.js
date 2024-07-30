@@ -66,6 +66,7 @@ export default class NewBill {
     const email = JSON.parse(localStorage.getItem("user")).email
     const allowedFiles = ['jpg', 'png', 'jpeg']
     const fileNames = this.fileName.split('.')
+    // const fileNames = ["test","jpg"]
     const fileExtension = fileNames[fileNames.length - 1]
     if (allowedFiles.includes(fileExtension)) {
       const bill = {

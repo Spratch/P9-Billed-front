@@ -7,9 +7,10 @@ import NewBillUI from "../views/NewBillUI.js"
 import NewBill from "../containers/NewBill.js"
 import user from '@testing-library/user-event';
 import mockStore from "../__mocks__/store"
+import mockedBills from "../__mocks__/store.js";
 import {localStorageMock} from "../__mocks__/localStorage.js";
 import router from "../app/Router.js";
-import { ROUTES_PATH} from "../constants/routes.js";
+import { ROUTES, ROUTES_PATH} from "../constants/routes.js";
 import '@testing-library/jest-dom'
 
 
@@ -78,50 +79,21 @@ describe("Given I am connected as an employee", () => {
       })
     })
 
+    /* NewBill POST test */
     describe("When I try to submit a new bill", () => {
-      beforeEach(() => {
-        Object.defineProperty(window, 'localStorage', { value: localStorageMock })
-
-        window.localStorage.setItem('user', JSON.stringify({
-          type: 'Employee'
-        }))
-        const root = document.createElement("div")
-        root.setAttribute("id", "root")
-        document.body.append(root)
-        router()
-        window.onNavigate(ROUTES_PATH.NewBill)
-      })
-
-      afterEach(() => {
-        jest.clearAllMocks()
-      })
-
       test("Then it should create a bill object", () => {
-        let formInstance = new NewBill({ document, onNavigate, store: mockStore, localStorage: window.localStorage })
+        Object.defineProperty(window, "localStorage", { value: localStorageMock, })
 
-        const fileInput = screen.getAllByTestId("file")[0]
-        const file = new File([""], "test.jpg", { type: "image/jpeg"})
-        
-        const event = {
-          preventDefault: jest.fn(),
-          target: { files: [file], value: "C:\\fakepath\\test.jpg" }
-        }
+        window.localStorage.setItem("user", JSON.stringify({ type: "Employee" }))
+        document.body.innerHTML = NewBillUI({})
 
-        formInstance = {
-          ...formInstance,
-          fileName: "test.jpg",
-          updateBill: jest.fn((bill) => bill)
-        }
+        const onNavigate = (pathname) => {
+          document.body.innerHTML = ROUTES({ pathname })
+        };
 
-        console.log("filename:",formInstance.fileName);
-        
-        fileInput.dispatchEvent(new Event("change"))
-        formInstance.handleChangeFile(event)
+        const formInstance = new NewBill({ document, onNavigate, store: mockedBills, localStorage: window.localStorage })
 
-        const form = screen.getAllByTestId("form-new-bill")[0]
-        const submitEvent = { preventDefault: jest.fn(), target: form, }
-        formInstance.fileName = "test.jpg"
-        formInstance.handleSubmit(submitEvent)
+        const submit = screen.getByTestId('form-new-bill')
 
         const bill = {
           "id": "47qAXb6fIm2zOKkLzMro",
@@ -139,8 +111,22 @@ describe("Given I am connected as an employee", () => {
           "pct": 20    
         }
   
-        expect(formInstance.updateBill(bill)).toBeCalled()
-        // expect(submitEvent.preventDefault).toHaveBeenCalled()
+        const handleSubmit = jest.fn((e) => formInstance.handleSubmit(e))
+        document.querySelector(`select[data-testid="expense-type"]`).value = bill.type
+        document.querySelector(`input[data-testid="expense-name"]`).value = bill.name
+        document.querySelector(`input[data-testid="amount"]`).value = bill.amount
+        document.querySelector(`input[data-testid="datepicker"]`).value = bill.date
+        document.querySelector(`input[data-testid="vat"]`).value = bill.vat
+        document.querySelector(`input[data-testid="pct"]`).value = bill.pct
+        document.querySelector(`textarea[data-testid="commentary"]`).value = bill.commentary
+        formInstance.fileUrl = bill.fileUrl
+        formInstance.fileName = bill.fileName
+
+        submit.addEventListener('click', handleSubmit)
+        fireEvent.click(submit)
+        
+        expect(handleSubmit).toHaveBeenCalledTimes(1)
+        expect(screen.getAllByText("Mes notes de frais")).toBeTruthy()
       })
     })
   })
