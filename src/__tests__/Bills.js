@@ -75,7 +75,13 @@ describe("Given I am connected as an employee", () => {
       const billsInstance = new Bills({ document, onNavigate, store: mockStore, localStorage: window.localStorage });
       const fetchedBills = await billsInstance.getBills();
 
-      const formattedBills = bills.map(bill => ({
+      const orderedBills = bills.sort((a, b) => {
+        const aDate = new Date(a.date).getTime();
+        const bDate = new Date(b.date).getTime();
+        return bDate - aDate;
+      });
+
+      const formattedBills = orderedBills.map(bill => ({
         ...bill,
         date: formatDate(bill.date),
         status: formatStatus(bill.status)

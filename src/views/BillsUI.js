@@ -20,6 +20,8 @@ const row = (bill) => {
   }
 
 const rows = (data) => {
+  console.log("data", data);
+
   if (!data) return "";
   const dataDate = [...data];
   dataDate.sort((a, b) => {
@@ -27,6 +29,7 @@ const rows = (data) => {
     const bDate = new Date(b.date).getTime();
     return bDate - aDate;
   });
+  console.log("dataDate", dataDate);
   return dataDate.map((bill) => row(bill)).join("");
 }
 
