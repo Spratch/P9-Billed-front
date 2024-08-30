@@ -114,5 +114,32 @@ describe("Given I am connected as an employee", () => {
       const fetchedBills = await billsInstance.getBills();
       expect(fetchedBills).toEqual(undefined);
     });
-  })
+  });
+
+
+  describe("When an error occurs on API", () => {
+    test("fetches bills from API and fails with 404 message error", async () => {
+      document.body.innerHTML = BillsUI({ data: bills, loading: false, error: "Erreur 404" });
+
+      const root = document.createElement("div");
+      root.setAttribute("id", "root");
+      document.body.append(root);
+      router();
+
+      const message = await screen.getByText(/Erreur 404/);
+      expect(message).toBeTruthy();
+    });
+    
+    test("fetches messages from API and fails with 500 message error", async () => {
+      document.body.innerHTML = BillsUI({ data: bills, loading: false, error: "Erreur 500" });
+
+      const root = document.createElement("div");
+      root.setAttribute("id", "root");
+      document.body.append(root);
+      router();
+
+      const message = await screen.getByText(/Erreur 500/);
+      expect(message).toBeTruthy
+    });
+  });
 })
